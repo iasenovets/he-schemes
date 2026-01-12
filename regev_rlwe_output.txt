@@ -1,0 +1,129 @@
+Working with polynomials of degree < 4
+Plaintext space: coefficients in Z_2
+Ciphertext space: coefficients in Z_32
+Polynomial modulus: x^4 + 1
+[+] Key Generation
+
+[polymul]
+   x(x): 9 + 15*x + 13*x^2 + 1*x^3
+   y(x): 1*x + 1*x^3
+   raw product: 9.0*x + 15.0*x^2 + 22.0*x^3 + 16.0*x^4 + 13.0*x^5 + 1.0*x^6
+   remainder mod f(x): 16 + 28*x + 14*x^2 + 22*x^3
+   result (mod q,f): [16 28 14 22]
+
+
+[polyadd]
+   x(x): 16 + 28*x + 14*x^2 + 22*x^3
+   y(x): 29*x
+   raw sum: 16.0 + 25.0*x + 14.0*x^2 + 22.0*x^3
+   remainder mod f(x): 16 + 25*x + 14*x^2 + 22*x^3
+   result (mod q,f): [16 25 14 22]
+
+[+] Generated secret key s(x): 1*x + 1*x^3
+[+] Generated public key pk(x): 16 + 25*x + 14*x^2 + 22*x^3 , 23 + 17*x + 19*x^2 + 31*x^3
+[+] Generated error polynomial e(x): 3*x
+public key:(array([16, 25, 14, 22]), array([23, 17, 19, 31]))
+secret key:[0 1 0 1]
+
+[polymul]
+   x(x): 16 + 25*x + 14*x^2 + 22*x^3
+   y(x): 1*x
+   raw product: 16.0*x + 25.0*x^2 + 14.0*x^3 + 22.0*x^4
+   remainder mod f(x): 10 + 16*x + 25*x^2 + 14*x^3
+   result (mod q,f): [10 16 25 14] 
+
+
+[polyadd]
+   x(x): 10 + 16*x + 25*x^2 + 14*x^3
+   y(x): 29 + 30*x^2 + 2*x^3
+   raw sum: 7.0 + 16.0*x + 23.0*x^2 + 16.0*x^3
+   remainder mod f(x): 7 + 16*x + 23*x^2 + 16*x^3
+   result (mod q,f): [ 7 16 23 16]
+
+
+[polyadd]
+   x(x): 7 + 16*x + 23*x^2 + 16*x^3
+   y(x): 16
+   raw sum: 23.0 + 16.0*x + 23.0*x^2 + 16.0*x^3
+   remainder mod f(x): 23 + 16*x + 23*x^2 + 16*x^3
+   result (mod q,f): [23 16 23 16]
+
+
+[polymul]
+   x(x): 23 + 17*x + 19*x^2 + 31*x^3
+   y(x): 1*x
+   raw product: 23.0*x + 17.0*x^2 + 19.0*x^3 + 31.0*x^4
+   remainder mod f(x): 1 + 23*x + 17*x^2 + 19*x^3
+   result (mod q,f): [ 1 23 17 19]
+
+
+[polyadd]
+   x(x): 1 + 23*x + 17*x^2 + 19*x^3
+   y(x): 29 + 3*x + 31*x^2 + 2*x^3
+   raw sum: 30.0 + 26.0*x + 16.0*x^2 + 21.0*x^3
+   remainder mod f(x): 30 + 26*x + 16*x^2 + 21*x^3
+   result (mod q,f): [30 26 16 21]
+
+
+[polymul]
+   x(x): 16 + 25*x + 14*x^2 + 22*x^3
+   y(x): 1 + 1*x^2
+   raw product: 16.0 + 25.0*x + 30.0*x^2 + 15.0*x^3 + 14.0*x^4 + 22.0*x^5
+   remainder mod f(x): 2 + 3*x + 30*x^2 + 15*x^3
+   result (mod q,f): [ 2  3 30 15]
+
+
+[polyadd]
+   x(x): 2 + 3*x + 30*x^2 + 15*x^3
+   y(x): 2*x + 1*x^2 + 2*x^3
+   raw sum: 2.0 + 5.0*x + 31.0*x^2 + 17.0*x^3
+   remainder mod f(x): 2 + 5*x + 31*x^2 + 17*x^3
+   result (mod q,f): [ 2  5 31 17]
+
+
+[polyadd]
+   x(x): 2 + 5*x + 31*x^2 + 17*x^3
+   y(x): 0
+   raw sum: 2.0 + 5.0*x + 31.0*x^2 + 17.0*x^3
+   remainder mod f(x): 2 + 5*x + 31*x^2 + 17*x^3
+   result (mod q,f): [ 2  5 31 17]
+
+
+[polymul]
+   x(x): 23 + 17*x + 19*x^2 + 31*x^3
+   y(x): 1 + 1*x^2
+   raw product: 23.0 + 17.0*x + 10.0*x^2 + 16.0*x^3 + 19.0*x^4 + 31.0*x^5
+   remainder mod f(x): 4 + 18*x + 10*x^2 + 16*x^3
+   result (mod q,f): [ 4 18 10 16]
+
+
+[polyadd]
+   x(x): 4 + 18*x + 10*x^2 + 16*x^3
+   y(x): 30*x + 2*x^2 + 31*x^3
+   raw sum: 4.0 + 16.0*x + 12.0*x^2 + 15.0*x^3
+   remainder mod f(x): 4 + 16*x + 12*x^2 + 15*x^3
+   result (mod q,f): [ 4 16 12 15]
+
+[+] Ciphertext ct1(73):
+
+         ct1_0: [23 16 23 16]
+         ct1_1: [30 26 16 21]
+
+[+] Ciphertext ct2(20):
+
+         ct1_0: [ 2  5 31 17]
+         ct1_1: [ 4 16 12 15]
+
+
+[polyadd]
+   x(x): 23 + 16*x + 23*x^2 + 16*x^3
+   y(x): 16
+   raw sum: 7.0 + 16.0*x + 23.0*x^2 + 16.0*x^3
+   remainder mod f(x): 7 + 16*x + 23*x^2 + 16*x^3
+   result (mod q,f): [ 7 16 23 16]
+
+
+[polymul]
+   x(x): 2 + 5*x + 31*x^2 + 17*x^3
+   y(x): 1
+   raw product: 2.0 + 5.

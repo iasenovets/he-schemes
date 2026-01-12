@@ -1,0 +1,107 @@
+def polymul_wm(x, y, poly_mod, verbose=False):
+    """Multiply two polynomials
+    Args:
+        x, y: two polynomials to be multiplied.
+        poly_mod: polynomial modulus.
+    Returns:
+        A polynomial in Z[X]/(poly_mod).
+    """
+    if verbose:
+        print("\n[polymul_wm]")
+        print("   x(x):", x)
+        print("   y(x):", y)
+
+    raw_prod = poly.polymul(x, y)
+    if verbose:
+        print("   raw product:", raw_prod)
+
+    quotient, remainder = poly.polydiv(raw_prod, poly_mod)
+
+    # make remainder nice and integer-like
+    remainder = np.int64(np.round(remainder))
+
+    if verbose:
+        print("   quotient:", quotient)
+        print("   remainder mod poly_mod:", remainder)
+        print()
+	# return poly.polydiv(poly.polymul(x, y), poly_mod)[1]
+    return remainder
+
+def polyadd_wm(x, y, poly_mod, verbose=False):
+    """Add two polynomials
+        Args:
+            x, y: two polynomials to be added.
+            poly_mod: polynomial modulus.
+        Returns:
+            A polynomial in Z[X]/(poly_mod).
+        """
+    if verbose:
+        print("\n[polyadd_wm]")
+        print("   x(x):", x)
+        print("   y(x):", y)
+
+    raw_sum = poly.polyadd(x, y)
+    if verbose:
+        print("   raw sum:", raw_sum)
+
+    quotient, remainder = poly.polydiv(raw_sum, poly_mod)
+    remainder = np.int64(np.round(remainder))
+
+    if verbose:
+        print("   quotient:", quotient)
+        print("   remainder mod poly_mod:", remainder)
+        print()
+	# return poly.polydiv(poly.polyadd(x, y), poly_mod)[1]
+    return remainder
+#==============================================================
+
+# ------Functions for polynomial evaluations both mod poly_mod and mod q-----
+def polymul(x, y, modulus, poly_mod, verbose=False):
+    """Multiply two polynomials and print intermediate steps."""
+    if verbose:
+        print("\n[polymul]")
+        print("   x(x):", poly_to_string(x, modulus))
+        print("   y(x):", poly_to_string(y, modulus))
+
+    # raw product (no modular reduction yet)
+    raw_prod = poly.polymul(x, y)
+    if verbose:
+        print("   raw product:", poly_to_string(raw_prod, modulus))
+
+    # polynomial division to reduce mod poly_mod
+    quotient, remainder = poly.polydiv(raw_prod % modulus, poly_mod)
+    remainder = np.int64(np.round(remainder % modulus))
+
+    if verbose:
+        print("   remainder mod f(x):", poly_to_string(remainder, modulus))
+        print("   result (mod q,f):", remainder, "\n")
+	# return np.int64(np.round(poly.polydiv(poly.polymul(x, y) % modulus, poly_mod)[1] % modulus))
+    return remainder
+
+
+def polyadd(x, y, modulus, poly_mod, verbose=False):
+    """Add two polynomials
+    Args:
+        x, y: two polynoms to be added.
+        modulus: coefficient modulus.
+        poly_mod: polynomial modulus.
+    Returns:
+        A polynomial in Z_modulus[X]/(poly_mod).
+    """
+    if verbose:
+        print("\n[polyadd]")
+        print("   x(x):", poly_to_string(x, modulus))
+        print("   y(x):", poly_to_string(y, modulus))
+
+    raw_sum = poly.polyadd(x, y) % modulus
+    if verbose:
+        print("   raw sum mod q:", poly_to_string(raw_sum, modulus))
+
+    quotient, remainder = poly.polydiv(raw_sum, poly_mod)
+    remainder = np.int64(np.round(remainder % modulus))
+
+    if verbose:
+        print("   remainder mod f(x):", poly_to_string(remainder, modulus))
+        print("   result:", remainder, "\n")
+	# return return np.int64(np.round(poly.polydiv(poly.polyadd(x, y) % modulus, poly_mod)[1] % modulus))
+    return remainder
